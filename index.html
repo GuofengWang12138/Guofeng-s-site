@@ -8,7 +8,7 @@
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     
     <style>
-        /* --- 视频背景样式 --- */
+        /* --- 1. 视频背景 --- */
         #bg-video {
             position: fixed;
             top: 0;
@@ -17,25 +17,29 @@
             height: 100%;
             object-fit: cover;
             z-index: -999;
-            filter: brightness(0.5); /* 亮度调节 */
+            filter: brightness(0.5); 
             transition: opacity 0.5s ease;
         }
 
         body {
             background-color: #000;
             background-image: none !important;
+            margin: 0;
+            overflow-x: hidden;
         }
 
-        /* --- 赛博朋克切换按钮样式 --- */
+        /* --- 2. 切换按钮 --- */
         #video-switch-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-            background-color: transparent;
-            color: #00e6e6;
-            border: 2px solid #00e6e6;
-            padding: 10px 20px;
+            position: fixed !important;
+            bottom: 40px !important;    
+            right: 40px !important;     
+            z-index: 2147483647 !important; 
+            
+            background-color: transparent !important;
+            color: #00e6e6 !important;
+            border: 2px solid #00e6e6 !important;
+            padding: 10px 20px !important;
+            
             font-family: 'Segoe UI', sans-serif;
             font-weight: bold;
             font-size: 14px;
@@ -43,7 +47,6 @@
             cursor: pointer;
             text-transform: uppercase;
             
-            /* 切角效果 */
             clip-path: polygon(
                 10px 0, 100% 0, 
                 100% calc(100% - 10px), 
@@ -56,13 +59,55 @@
         }
 
         #video-switch-btn:hover {
-            background-color: #00e6e6;
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 230, 230, 0.8);
+            background-color: #00e6e6 !important;
+            color: #000 !important;
+            box-shadow: 0 0 20px rgba(0, 230, 230, 0.8) !important;
         }
 
         #video-switch-btn:active {
             transform: scale(0.95);
+        }
+
+        /* --- 3. 全新定义的页脚 (白色纯净版) --- */
+        #my-fixed-footer {
+            position: fixed !important; 
+            bottom: 52px !important;    
+            left: 50% !important;       
+            transform: translateX(-50%) !important; 
+            
+            z-index: 2147483647 !important; 
+            width: auto !important;     
+            white-space: nowrap !important;
+            pointer-events: none;       
+            
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        #my-fixed-footer h2 {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 16px !important;   
+            color: #ffffff !important;    /* 这里的字是白色的 */
+            letter-spacing: 1px;
+            margin: 0 !important;
+            font-weight: normal !important;
+            text-shadow: 2px 2px 4px #000000, 0 0 5px rgba(0,0,0,0.8); 
+            pointer-events: auto; 
+        }
+
+        #my-fixed-footer a {
+            color: #ffffff !important;    /* 【关键修改】这里改成纯白色了！ */
+            text-decoration: none !important;
+            font-weight: bold;
+            margin-left: 5px;
+            transition: color 0.3s ease;  /* 加个平滑过渡 */
+        }
+
+        #my-fixed-footer a:hover {
+            color: #00e6e6 !important;    /* 鼠标放上去变回青色，不然别人不知道能点 */
+            text-shadow: 0 0 10px #00e6e6;
+            text-decoration: underline !important;
         }
     </style>
 </head>
@@ -74,7 +119,7 @@
     </video>
 
     <button id="video-switch-btn" onclick="switchBackground()">
-        SWITCH REALITY_
+        更换背景
     </button>
 
     <div class="container" id="home">
@@ -87,10 +132,10 @@
             </label>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">Resume</a></li>
+                    <li><a href="home.html">主页</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="projects.html">个人日志</a></li>
+                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">个人履历</a></li>
                 </ul>
             </div>
         </nav>
@@ -105,7 +150,7 @@
     </div>
 
     <div class="button_container">
-        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">RESUME_</button></a>
+        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">个人履历</button></a>
     </div>
 
     <div class="social_container">
@@ -128,18 +173,18 @@
         </div>
     </div>
 
-    <div class="footer">
+    <div id="my-fixed-footer">
         <h2>请联系我：<a href="mailto:Rohanwang12138@gmail.com">Rohanwang12138@gmail.com</a></h2>
     </div>
 
     <script>
-        // 修改点 2: 数组里的路径都加上了 "Home Page/"
-        // 注意：文件夹名字中间有空格，代码里也要保留空格
         const videos = [
             'Home Page/bg1.mp4', 
             'Home Page/bg2.mp4', 
             'Home Page/bg3.mp4', 
-            'Home Page/bg4.mp4'
+            'Home Page/bg4.mp4',
+            'Home Page/bg5.mp4',
+            'Home Page/bg6.mp4'
         ];
         
         let currentVideoIndex = 0;
@@ -149,20 +194,17 @@
         function switchBackground() {
             currentVideoIndex = (currentVideoIndex + 1) % videos.length;
             
-            // 按钮闪烁特效
             switchBtn.innerText = "LOADING...";
-            switchBtn.style.backgroundColor = "#fff";
-            switchBtn.style.color = "#000"; // 闪烁时文字变黑
+            switchBtn.style.setProperty('background-color', '#fff', 'important');
+            switchBtn.style.setProperty('color', '#000', 'important');
             
             setTimeout(() => {
-                // 切换视频
                 videoElement.src = videos[currentVideoIndex];
                 videoElement.play();
                 
-                // 恢复按钮状态
                 switchBtn.innerText = "SWITCH REALITY_";
-                switchBtn.style.backgroundColor = "transparent";
-                switchBtn.style.color = "#00e6e6"; // 恢复文字青色
+                switchBtn.style.setProperty('background-color', 'transparent', 'important');
+                switchBtn.style.setProperty('color', '#00e6e6', 'important');
                 
                 console.log("Switched to: " + videos[currentVideoIndex]);
             }, 100);
