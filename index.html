@@ -1,97 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wang Guofeng | Personal Website</title>
     <link rel="stylesheet" href="home.css">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
-    <script src="main.js"></script>
+    
+    <style>
+        /* --- 视频背景样式 --- */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -999;
+            filter: brightness(0.5); /* 亮度调节 */
+            transition: opacity 0.5s ease;
+        }
 
+        body {
+            background-color: #000;
+            background-image: none !important;
+        }
+
+        /* --- 赛博朋克切换按钮样式 --- */
+        #video-switch-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background-color: transparent;
+            color: #00e6e6;
+            border: 2px solid #00e6e6;
+            padding: 10px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-transform: uppercase;
+            
+            /* 切角效果 */
+            clip-path: polygon(
+                10px 0, 100% 0, 
+                100% calc(100% - 10px), 
+                calc(100% - 10px) 100%, 
+                0 100%, 0 10px
+            );
+            
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 230, 230, 0.2);
+        }
+
+        #video-switch-btn:hover {
+            background-color: #00e6e6;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 230, 230, 0.8);
+        }
+
+        #video-switch-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
 </head>
-
-<!--Main Landing Page-->
 
 <body>
 
-<!--Navigation-->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="Home Page/bg1.mp4" type="video/mp4">
+    </video>
 
-<div class="container" id="home">
-    <nav>
-          <input type="checkbox" id="nav" class="hidden">
-          <label for="nav" class="nav-btn">
+    <button id="video-switch-btn" onclick="switchBackground()">
+        SWITCH REALITY_
+    </button>
+
+    <div class="container" id="home">
+        <nav>
+            <input type="checkbox" id="nav" class="hidden">
+            <label for="nav" class="nav-btn">
                 <i></i>
                 <i></i>
                 <i></i>
-          </label>
-          <div class="nav-wrapper">
+            </label>
+            <div class="nav-wrapper">
                 <ul>
-                      <li><a href="home.html">Home</a></li>
-                      <li><a href="about.html">About</a></li>
-                      <li><a href="projects.html">Projects</a></li>
-                      <li><a href="Pathum_D_2021_resume.pdf" target="_blank">Resume</a></li>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">Resume</a></li>
                 </ul>
-          </div>
-    </nav>
-</div>
+            </div>
+        </nav>
+    </div>
 
+    <div class="text_header">
+        <h1 class="glitch" style="font-family: 'Segoe UI', 'PingFang SC', sans-serif; font-weight: 600; letter-spacing: 3px; text-shadow: 0 0 5px rgba(0, 230, 230, 0.8); color: #ffffff;" data-text="你好，我是王国峰">你好，我是王国峰</h1>
+    </div>
 
-<!--Headers-->
-<div class="text_header">
-    <h1 class="glitch" style="font-family: 'Segoe UI', 'PingFang SC', sans-serif; font-weight: 600; letter-spacing: 3px; text-shadow: 0 0 5px rgba(0, 230, 230, 0.8); color: #ffffff;" data-text="你好，我是王国峰">你好，我是王国峰</h1>
-</div>
+    <div class="tagline">
+        <h2>数据标注项目经理 | 自动驾驶 · 多模态大模型 · 内容质量</h2>
+    </div>
 
-<div class="tagline">
-    <h2>数据标注项目经理 | 自动驾驶 · 多模态大模型 · 内容质量</h2>
-</div>
+    <div class="button_container">
+        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">RESUME_</button></a>
+    </div>
 
+    <div class="social_container">
+        <div class="social_box">
+            <img src="Home Page/social box.svg" draggable="false">
+        </div>
+        <div class="icons_container">
+            <div class="github">
+                <img src="About Page/github_black.svg" alt="github" draggable="false" onclick="window.open('https://github.com/GuofengWang12138', '_blank');" />
+            </div>
+            <div class="youtube">
+                <img src="About Page/youtube_black.svg" alt="Youtube" draggable="false" onclick="window.open('https://www.youtube.com/channel/UCwBEcY77KvSDHY8fWgY8gqg', '_blank');" />
+            </div>
+            <div class="instagram">
+                <img src="About Page/instagram_black.svg" alt="Instagram" draggable="false" onclick="window.open('https://www.instagram.com/pathum.danthanarayana/', '_blank');" />
+            </div>
+            <div class="linkedin">
+                <img src="About Page/linkedin_black.svg" alt="Linkedin" draggable="false" onclick="window.open('https://www.linkedin.com/in/pathum-danthanarayana/', '_blank');" />
+            </div>
+        </div>
+    </div>
 
-<!--Button-->
-<div class="button_container">
-    <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">RESUME_</button></a>
-</div>
+    <div class="footer">
+        <h2>请联系我：<a href="mailto:Rohanwang12138@gmail.com">Rohanwang12138@gmail.com</a></h2>
+    </div>
 
+    <script>
+        // 修改点 2: 数组里的路径都加上了 "Home Page/"
+        // 注意：文件夹名字中间有空格，代码里也要保留空格
+        const videos = [
+            'Home Page/bg1.mp4', 
+            'Home Page/bg2.mp4', 
+            'Home Page/bg3.mp4', 
+            'Home Page/bg4.mp4'
+        ];
+        
+        let currentVideoIndex = 0;
+        const videoElement = document.getElementById('bg-video');
+        const switchBtn = document.getElementById('video-switch-btn');
 
-<!--Social Media Icons-->
-<div class="social_container">
-
-<div class="social_box">
-
-    <img src="Home Page/social box.svg" draggable="false">
-</div>
-
-<div class="icons_container">
-<div class="github">
-    <img src="About Page/github_black.svg" alt="github" draggable="false" onclick="window.open('https://github.com/GuofengWang12138', '_blank');" />
-</div>
-
-<div class="youtube">
-    <img src="About Page/youtube_black.svg" alt="Youtube" draggable="false" onclick="window.open('https://www.youtube.com/channel/UCwBEcY77KvSDHY8fWgY8gqg', '_blank');" />
-</div>
-
-<div class="instagram">
-    <img src="About Page/instagram_black.svg" alt="Instagram" draggable="false" onclick="window.open('https://www.instagram.com/pathum.danthanarayana/', '_blank');" />
-</div>
-
-<div class="linkedin">
-    <img src="About Page/linkedin_black.svg" alt="Linkedin" draggable="false" onclick="window.open('https://www.linkedin.com/in/pathum-danthanarayana/', '_blank');" />
-</div>
-
-</div>
-</div>
-
-
-<!--Footer-->
-
-<div class="footer">
-    <h2>请联系我：<a href="mailto:Rohanwang12138@gmail.com">Rohanwang12138@gmail.com</a></h2>
-</div>
-
-
-
-
-
-
+        function switchBackground() {
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+            
+            // 按钮闪烁特效
+            switchBtn.innerText = "LOADING...";
+            switchBtn.style.backgroundColor = "#fff";
+            switchBtn.style.color = "#000"; // 闪烁时文字变黑
+            
+            setTimeout(() => {
+                // 切换视频
+                videoElement.src = videos[currentVideoIndex];
+                videoElement.play();
+                
+                // 恢复按钮状态
+                switchBtn.innerText = "SWITCH REALITY_";
+                switchBtn.style.backgroundColor = "transparent";
+                switchBtn.style.color = "#00e6e6"; // 恢复文字青色
+                
+                console.log("Switched to: " + videos[currentVideoIndex]);
+            }, 100);
+        }
+    </script>
+    
+    <script src="main.js"></script>
 
 </body>
 </html>
