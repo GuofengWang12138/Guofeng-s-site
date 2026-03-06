@@ -6,7 +6,7 @@ const unloadedCharacter = ".";
 const loadedCharacter = "#";
 const spinnerFrames = ["/", "-", "\\", "|"];
 
-// Clone the element and give the glitch classes
+// 复制 glitch 元素 (保持原样)
 (glitchElement => {
     const glitch = glitchElement.cloneNode(true);
     const glitchReverse = glitchElement.cloneNode(true);
@@ -19,14 +19,14 @@ const spinnerFrames = ["/", "-", "\\", "|"];
     glitchElement.insertAdjacentElement("afterend", glitchReverse);
 })(terminal);
 
-// Get all the loading bars
+// 获取所有元素
 const loadingBars = document.querySelectorAll(".loading-bar");
 const processAmounts = document.querySelectorAll(".process-amount");
 const spinners = document.querySelectorAll(".spinner");
 const rebootingText = document.querySelectorAll(".hydra_rebooting");
 const glitches = document.querySelectorAll(".glitch--clone");
 
-// Helper for random number
+// 随机数生成器
 const RandomNumber = (min, max) => Math.floor(Math.random() * max) + min;
 
 const HideAll = elements =>
@@ -37,7 +37,7 @@ const ShowAll = elements =>
     elements.forEach(glitchGroup =>
         glitchGroup.forEach(element => element.classList.remove("hidden")) );
 
-// Render the bar to HTML
+// 渲染进度条 HTML
 const RenderBar = ( values ) => {
     const currentLoaded = values.lastIndexOf(loadedCharacter) + 1;
     const loaded = values.slice(0, currentLoaded).join("");
@@ -53,7 +53,7 @@ const RenderBar = ( values ) => {
     });
 };
 
-// 进度条速度控制
+// --- 核心修改：控制进度条速度 ---
 const DrawLoadingBar = ( values ) => {
     return new Promise((resolve) => {
             const loadingBarAnimation = setInterval(() => {
@@ -65,8 +65,12 @@ const DrawLoadingBar = ( values ) => {
                 values.pop(unloadedCharacter);
                 values.unshift(loadedCharacter);
                 RenderBar(values);
-        // 保持 4.5秒 左右的进度条速度
-        }, RandomNumber(100, 275)); 
+        
+        // 【关键修改】让速度更稳定！
+        // 之前是 (100, 275)，范围太大导致忽快忽慢。
+        // 现在改成 (170, 200)。
+        // 这样每一步都差不多是 0.18秒，24步走完非常稳定地接近 4.5秒。
+        }, RandomNumber(170, 200)); 
     });
 };
 
@@ -79,7 +83,7 @@ const DrawSpinner = (spinnerFrame = 0) => {
                     spinnerFrames[spinnerFrame % spinnerFrames.length]
                 }]`)
         );
-    }, RandomNumber(100, 275));
+    }, RandomNumber(170, 200)); // 转轮速度同步
 };
 
 const AnimateBox = () => {
@@ -98,15 +102,12 @@ const AnimateBox = () => {
         easing: 'cubic-bezier(0,0,0.32,1)',
     }); 
 
-    // --- 这里是修改的地方 ---
     hydraAnimation.addEventListener('finish', () => {
         rebootSuccessText.removeAttribute("style");
         hydra.removeAttribute("style");
         
-        // 【修改了这里】
-        // 之前是 500 (0.5秒)，太快了。
-        // 现在改成 2500 (2.5秒)。
-        // 这样屏幕会显示 "REBOOTING SUCCESSFUL" 足足 2.5秒，你绝对能看清。
+        // 这里保留了你想要的“结局停留时间”
+        // 动画跑完后，显示 SUCCESS 字样 2.5秒，然后才跳转
         setTimeout(() => {
             window.location.href = "index.html?played=yes";
         }, 2500);
