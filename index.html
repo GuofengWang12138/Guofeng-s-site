@@ -135,7 +135,7 @@
                     <li><a href="home.html">主页</a></li>
                     <li><a href="about.html">关于我</a></li>
                     <li><a href="projects.html">个人日志</a></li>
-                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">个人履历</a></li>
+                    <li><a href="个人履历.pdf" target="_blank">个人履历</a></li>
                 </ul>
             </div>
         </nav>
@@ -150,7 +150,7 @@
     </div>
 
     <div class="button_container">
-        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">个人履历</button></a>
+        <a href="个人履历.pdf" target="_blank"><button type="button">个人履历</button></a>
     </div>
 
     <div class="social_container">
@@ -194,7 +194,7 @@
         function switchBackground() {
             currentVideoIndex = (currentVideoIndex + 1) % videos.length;
             
-            switchBtn.innerText = "LOADING...";
+            switchBtn.innerText = "加载中...";
             switchBtn.style.setProperty('background-color', '#fff', 'important');
             switchBtn.style.setProperty('color', '#000', 'important');
             
@@ -202,7 +202,7 @@
                 videoElement.src = videos[currentVideoIndex];
                 videoElement.play();
                 
-                switchBtn.innerText = "SWITCH REALITY_";
+                switchBtn.innerText = "更换背景";
                 switchBtn.style.setProperty('background-color', 'transparent', 'important');
                 switchBtn.style.setProperty('color', '#00e6e6', 'important');
                 
