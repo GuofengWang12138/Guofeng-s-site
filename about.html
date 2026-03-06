@@ -5,147 +5,237 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenMax.min.js"></script>
-    <title>Pathum Danthanarayana | About</title>
+    <title>王国峰 | 关于我</title>
     <link rel="stylesheet" href="about.css">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
+
+    <style>
+        /* 新加内容的包装器 */
+        .skills-integration-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            
+            /* 这个数字控制技能框距离顶部的距离，避开上面的文字 */
+            margin-top: 500px; 
+            
+            padding-bottom: 100px;
+        }
+
+        .skill-category {
+            /* 【关键修改1】宽度从 85% 改为 75%，变窄了，避开左侧黄条 */
+            width: 75%;
+            max-width: 1100px; /* 最大宽度也稍微收一点 */
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .skill-category h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e74c3c;
+            display: inline-block;
+        }
+
+        .grid-box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 【关键修改2】间距从 20px 改为 15px，更紧凑 */
+            gap: 30px;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            /* 【关键修改3】高度从 150px 改为 140px，稍微小巧一点 */
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #e74c3c;
+            box-shadow: 0 15px 30px rgba(231, 76, 60, 0.2);
+        }
+        .card img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+            filter: invert(1);
+        }
+        .card span {
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            .skill-category { width: 90%; } /* 手机上可以宽一点 */
+            .grid-box { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .skills-integration-wrapper { margin-top: 750px; } 
+        }
+    </style>
 </head>
 
 <body style="background-color: #020106;">
-
-<!--Navigation-->
 
 <div class="container" id="home">
     <nav>
           <input type="checkbox" id="nav" class="hidden">
           <label for="nav" class="nav-btn">
-                <i></i>
-                <i></i>
-                <i></i>
+                <i></i><i></i><i></i>
           </label>
           <div class="nav-wrapper">
                 <ul>
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="about.html">About</a></li>
-                      <li><a href="projects.html">Projects</a></li>
-                      <li><a href="Pathum_D_2021_resume.pdf" target="_blank">Resume</a></li>
+                      <li><a href="index.html">主页</a></li>
+                      <li><a href="about.html">关于我</a></li>
+                      <li><a href="projects.html">观点</a></li>
+                      <li><a href="Pathum_D_2021_resume.pdf" target="_blank">个人履历</a></li>
                 </ul>
           </div>
     </nav>
 </div>
 
-
-<!--Headers-->
-
 <div class="header_container">
-
-<div class="header">
-    <h1>About</h1>
+    <div class="header">
+        <h1>关于我</h1>
+    </div>
+    <div class="underline">
+        <img src="About Page/underline.png" draggable="false">
+    </div>
 </div>
 
-<div class="underline">
-    <img src="About Page/underline.png" draggable="false">
-</div>
-
-</div>
-
-
-<!--Social Media Icons-->
 <div class="social_container">
-
     <div class="social_box">
-
         <img src="About Page/socialbox_yellow.svg" draggable="false">
     </div>
-
     <div class="icons_container">
     <div class="github">
         <img src="About Page/github_black.svg" alt="github" draggable="false" onclick="window.open('https://github.com/pathumd', '_blank');" />
     </div>
-
     <div class="youtube">
         <img src="About Page/youtube_black.svg" alt="Youtube" draggable="false" onclick="window.open('https://www.youtube.com/channel/UCwBEcY77KvSDHY8fWgY8gqg', '_blank');" />
     </div>
-
     <div class="instagram">
         <img src="About Page/instagram_black.svg" alt="Instagram" draggable="false" onclick="window.open('https://www.instagram.com/pathum.danthanarayana/', '_blank');" />
     </div>
-
     <div class="linkedin">
         <img src="About Page/linkedin_black.svg" alt="Linkedin" draggable="false" onclick="window.open('https://www.linkedin.com/in/pathum-danthanarayana/', '_blank');" />
     </div>
-
     </div>
-    </div>
+</div>
 
-
-<!--Skills Cards-->
 <div class="intro">
-
-    <h2>Hi I'm Pathum, a software engineering student with a passion in web frontends.</h2>
+    <h2>你好，我是王国峰，一名深耕数据标注领域的项目经理。</h2>
 </div>
 <div class="intro2">
-    <h2>Consider taking a look at some of my projects, and welcome to my digital portfolio!</h2>
-</div>
-
-<div class="entire_container">
-
-<div class="languages">
-    <h2>Languages</h2>
-</div>
-
-    <div class="python"><img src="About Page/python_card.svg" draggable="false"></div>
-    <div class="javascript"><img src="About Page/javascript_card.svg" draggable="false"></div>
-    <div class="html"><img src="About Page/html.svg" draggable="false"></div>
-
-
-<div class="software">
-    <h2>Prototyping / Design</h2>
-</div>
-
-    <div class="xd"><img src="About Page/xd.svg" draggable="false"></div>
-    <div class="illustrator"><img src="About Page/illustrator.svg" draggable="false"></div>
-    <div class="photoshop"><img src="About Page/photoshop.svg" draggable="false"></div>
-    <div class="premiere_pro"><img src="About Page/premiere_pro.svg" draggable="false"></div>
-    <div class="after_effects"><img src="About Page/after_effects.svg" draggable="false"></div>
-    <div class="fl_studio"><img src="About Page/fl_studio.svg" draggable="false"></div>
-</div>
-
+    <h2>在这里，我沉淀了对数据标注与其细分领域的深度思考，希望我的分享能对你有所帮助！</h2>
 </div>
 
 
-<!--Footer-->
+<div class="skills-integration-wrapper">
 
-<div class="footer">
-    <h2>Pathum Danthanarayana 2021 | <a href="https://github.com/pathumd/2021_personal_site" target="_blank">View this project</a></h2>
+    <div class="skill-category">
+        <h2>专业领域</h2>
+        <div class="grid-box">
+            <div class="card">
+                <img src="About Page/html.svg" alt="Auto">
+                <span>自动驾驶 / 2D&3D</span>
+            </div>
+            <div class="card">
+                <img src="About Page/python_card.svg" alt="LLM">
+                <span>多模态大模型 / RLHF</span>
+            </div>
+            <div class="card">
+                <img src="About Page/javascript_card.svg" alt="Data">
+                <span>数据清洗 & 质量</span>
+            </div>
+            <div class="card">
+                <img src="About Page/xd.svg" alt="PM">
+                <span>项目管理 / Agile</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="skill-category">
+        <h2>工具 / 软件</h2>
+        <div class="grid-box">
+            <div class="card">
+                <img src="About Page/python_card.svg" alt="Python">
+                <span>Python</span>
+            </div>
+            <div class="card">
+                <img src="About Page/illustrator.svg" alt="Jira">
+                <span>Jira / Confluence</span>
+            </div>
+            <div class="card">
+                <img src="About Page/photoshop.svg" alt="Linux">
+                <span>Linux / Shell</span>
+            </div>
+            <div class="card">
+                <img src="About Page/xd.svg" alt="Excel">
+                <span>Excel VBA</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="skill-category">
+        <h2>其他技能</h2>
+        <div class="grid-box">
+            <div class="card">
+                <img src="About Page/html.svg" alt="English">
+                <span>英语 / IELTS</span>
+            </div>
+            <div class="card">
+                <img src="About Page/javascript_card.svg" alt="VR">
+                <span>VR / 空间计算</span>
+            </div>
+            <div class="card">
+                <img src="About Page/premiere_pro.svg" alt="Photo">
+                <span>摄影 / 剪辑</span>
+            </div>
+            <div class="card">
+                <img src="About Page/after_effects.svg" alt="Learning">
+                <span>快速学习</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" style="margin-top: 50px; text-align: center; color: #666;">
+        <h2>王國峰 2026 | <a href="#" target="_blank" style="color: #888;">查看本项目</a></h2>
+    </div>
+
 </div>
 
-
-<!--Progress Counter-->
 <div class="percent">
     <div class="fill"></div>
     <div class="counter"><h3></h3></div>
 </div>
 
 <script>
-
     var counter = document.querySelector(".percent");
-
     function progress() {
         var windowScrollTop = $(window).scrollTop();
         var docHeight = $(document).height();
         var windowHeight = $(window).height();
         var progress = (windowScrollTop / (docHeight - windowHeight)) * 100;
-
         var $bgColor = progress > 99 ? "#fff" : "#fff";
         var $textColor = progress > 99 ? "#fff" : "#333";
-
-        $("h3")
-            .text(Math.round(progress) + "%")
-            .css({ color: $textColor });
-
-        $(".fill")
-            .height(progress + "%")
-            .css({ backgroundColor: $bgColor });
+        $("h3").text(Math.round(progress) + "%").css({ color: $textColor });
+        $(".fill").height(progress + "%").css({ backgroundColor: $bgColor });
     }
     progress();
     $(document).on("scroll", progress);
