@@ -2,13 +2,28 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    
+    <script>
+        (function() {
+            // 获取当前网址的参数
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // 如果网址里没有 'played' 这个标记，说明没看过动画
+            if (!urlParams.has('played')) {
+                // 此时跳转去 loading.html
+                window.location.href = 'loading.html';
+            }
+            // 如果有 'played'，这就行代码不执行，直接往下加载主页
+        })();
+    </script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wang Guofeng | Personal Website</title>
     <link rel="stylesheet" href="home.css">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     
     <style>
-        /* --- 1. 视频背景 --- */
+        /* --- 视频背景 --- */
         #bg-video {
             position: fixed;
             top: 0;
@@ -22,100 +37,77 @@
         }
 
         body {
-            background-color: #000;
-            background-image: none !important;
+            background-color: #000; /* 视频加载前显示黑色 */
             margin: 0;
             overflow-x: hidden;
         }
 
-        /* --- 2. 切换按钮 --- */
+        /* --- 切换按钮 --- */
         #video-switch-btn {
-            position: fixed !important;
-            bottom: 40px !important;    
-            right: 40px !important;     
-            z-index: 2147483647 !important; 
-            
-            background-color: transparent !important;
-            color: #00e6e6 !important;
-            border: 2px solid #00e6e6 !important;
-            padding: 10px 20px !important;
-            
+            position: fixed;
+            bottom: 40px;    
+            right: 40px;     
+            z-index: 1000; 
+            background-color: transparent;
+            color: #00e6e6;
+            border: 2px solid #00e6e6;
+            padding: 10px 20px;
             font-family: 'Segoe UI', sans-serif;
             font-weight: bold;
             font-size: 14px;
             letter-spacing: 2px;
             cursor: pointer;
             text-transform: uppercase;
-            
-            clip-path: polygon(
-                10px 0, 100% 0, 
-                100% calc(100% - 10px), 
-                calc(100% - 10px) 100%, 
-                0 100%, 0 10px
-            );
-            
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
             transition: all 0.3s ease;
             box-shadow: 0 0 10px rgba(0, 230, 230, 0.2);
         }
 
         #video-switch-btn:hover {
-            background-color: #00e6e6 !important;
-            color: #000 !important;
-            box-shadow: 0 0 20px rgba(0, 230, 230, 0.8) !important;
+            background-color: #00e6e6;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 230, 230, 0.8);
         }
 
-        #video-switch-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* --- 3. 页脚 (仿照 About 页面的清爽风格) --- */
+        /* --- 页脚 --- */
         #my-fixed-footer {
-            position: fixed !important; 
-            bottom: 52px !important;    
-            left: 50% !important;       
-            transform: translateX(-50%) !important; 
-            
-            z-index: 2147483647 !important; 
-            width: auto !important;     
-            white-space: nowrap !important;
+            position: fixed; 
+            bottom: 52px;    
+            left: 50%;       
+            transform: translateX(-50%); 
+            z-index: 1000; 
+            width: auto;     
+            white-space: nowrap;
             pointer-events: none;       
-            
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
         }
         
         #my-fixed-footer h2 {
-            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            font-size: 14px !important;
-            font-weight: normal !important;
-            color: #ffffff !important;
-            letter-spacing: 1px !important;
-            margin: 0 !important;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin: 0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8); 
             pointer-events: auto; 
         }
 
         #my-fixed-footer a {
-            font-family: 'Segoe UI', sans-serif !important;
-            color: #ffffff !important;
-            text-decoration: none !important;
-            font-weight: normal !important;
+            color: #ffffff;
+            text-decoration: none;
             margin-left: 5px;
-            transition: color 0.3s ease;
         }
 
         #my-fixed-footer a:hover {
-            color: #00e6e6 !important;
-            text-decoration: underline !important;
+            color: #00e6e6;
+            text-decoration: underline;
         }
 
-        /* --- 4. 顶部导航栏 (新增：黑体设置) --- */
+        /* --- 导航栏 --- */
         .nav-wrapper ul li a {
-            /* 强制使用微软雅黑/黑体 */
-            font-family: "Microsoft YaHei", "SimHei", "Heiti SC", sans-serif !important;
-            font-weight: bold !important; /* 加粗，对应“黑体”的视觉感 */
-            letter-spacing: 1px; /* 稍微加点间距更好看 */
+            font-family: "Microsoft YaHei", "SimHei", sans-serif !important;
+            font-weight: bold !important; 
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -140,8 +132,7 @@
             </label>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="home.html">主页</a></li>
-                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="index.html?played=yes">主页</a></li> <li><a href="about.html">关于我</a></li>
                     <li><a href="projects.html">个人日志</a></li>
                     <li><a href="Pathum_D_2021_resume.pdf" target="_blank">个人履历</a></li>
                 </ul>
@@ -150,7 +141,7 @@
     </div>
 
     <div class="text_header">
-        <h1 class="glitch" style="font-family: 'Segoe UI', 'PingFang SC', sans-serif; font-weight: 600; letter-spacing: 3px; text-shadow: 0 0 5px rgba(0, 230, 230, 0.8); color: #ffffff;" data-text="你好，我是王国峰">你好，我是王国峰</h1>
+        <h1 class="glitch" style="font-family: 'Segoe UI', sans-serif; font-weight: 600; letter-spacing: 3px; text-shadow: 0 0 5px rgba(0, 230, 230, 0.8); color: #ffffff;" data-text="你好，我是王国峰">你好，我是王国峰</h1>
     </div>
 
     <div class="tagline">
@@ -167,16 +158,16 @@
         </div>
         <div class="icons_container">
             <div class="github">
-                <img src="About Page/github_black.svg" alt="github" draggable="false" onclick="window.open('https://github.com/GuofengWang12138', '_blank');" />
+                <img src="About Page/github_black.svg" alt="github" onclick="window.open('https://github.com/GuofengWang12138', '_blank');" />
             </div>
             <div class="youtube">
-                <img src="About Page/youtube_black.svg" alt="Youtube" draggable="false" onclick="window.open('https://www.youtube.com/channel/UCwBEcY77KvSDHY8fWgY8gqg', '_blank');" />
+                <img src="About Page/youtube_black.svg" alt="Youtube" onclick="window.open('https://www.youtube.com/channel/UCwBEcY77KvSDHY8fWgY8gqg', '_blank');" />
             </div>
             <div class="instagram">
-                <img src="About Page/instagram_black.svg" alt="Instagram" draggable="false" onclick="window.open('https://www.instagram.com/pathum.danthanarayana/', '_blank');" />
+                <img src="About Page/instagram_black.svg" alt="Instagram" onclick="window.open('https://www.instagram.com/pathum.danthanarayana/', '_blank');" />
             </div>
             <div class="linkedin">
-                <img src="About Page/linkedin_black.svg" alt="Linkedin" draggable="false" onclick="window.open('https://www.linkedin.com/in/pathum-danthanarayana/', '_blank');" />
+                <img src="About Page/linkedin_black.svg" alt="Linkedin" onclick="window.open('https://www.linkedin.com/in/pathum-danthanarayana/', '_blank');" />
             </div>
         </div>
     </div>
@@ -201,25 +192,20 @@
 
         function switchBackground() {
             currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-            
             switchBtn.innerText = "加载中...";
-            switchBtn.style.setProperty('background-color', '#fff', 'important');
-            switchBtn.style.setProperty('color', '#000', 'important');
+            switchBtn.style.background = '#fff';
+            switchBtn.style.color = '#000';
             
             setTimeout(() => {
                 videoElement.src = videos[currentVideoIndex];
                 videoElement.play();
-                
                 switchBtn.innerText = "更换背景";
-                switchBtn.style.setProperty('background-color', 'transparent', 'important');
-                switchBtn.style.setProperty('color', '#00e6e6', 'important');
-                
-                console.log("Switched to: " + videos[currentVideoIndex]);
+                switchBtn.style.background = 'transparent';
+                switchBtn.style.color = '#00e6e6';
             }, 100);
         }
     </script>
     
     <script src="main.js"></script>
-
 </body>
 </html>
