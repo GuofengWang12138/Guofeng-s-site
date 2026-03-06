@@ -68,7 +68,7 @@
             transform: scale(0.95);
         }
 
-        /* --- 3. 全新定义的页脚 (白色纯净版) --- */
+        /* --- 3. 页脚 (仿照 About 页面的清爽风格) --- */
         #my-fixed-footer {
             position: fixed !important; 
             bottom: 52px !important;    
@@ -86,28 +86,36 @@
         }
         
         #my-fixed-footer h2 {
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 16px !important;   
-            color: #ffffff !important;    /* 这里的字是白色的 */
-            letter-spacing: 1px;
-            margin: 0 !important;
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            font-size: 14px !important;
             font-weight: normal !important;
-            text-shadow: 2px 2px 4px #000000, 0 0 5px rgba(0,0,0,0.8); 
+            color: #ffffff !important;
+            letter-spacing: 1px !important;
+            margin: 0 !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8); 
             pointer-events: auto; 
         }
 
         #my-fixed-footer a {
-            color: #ffffff !important;    /* 【关键修改】这里改成纯白色了！ */
+            font-family: 'Segoe UI', sans-serif !important;
+            color: #ffffff !important;
             text-decoration: none !important;
-            font-weight: bold;
+            font-weight: normal !important;
             margin-left: 5px;
-            transition: color 0.3s ease;  /* 加个平滑过渡 */
+            transition: color 0.3s ease;
         }
 
         #my-fixed-footer a:hover {
-            color: #00e6e6 !important;    /* 鼠标放上去变回青色，不然别人不知道能点 */
-            text-shadow: 0 0 10px #00e6e6;
+            color: #00e6e6 !important;
             text-decoration: underline !important;
+        }
+
+        /* --- 4. 顶部导航栏 (新增：黑体设置) --- */
+        .nav-wrapper ul li a {
+            /* 强制使用微软雅黑/黑体 */
+            font-family: "Microsoft YaHei", "SimHei", "Heiti SC", sans-serif !important;
+            font-weight: bold !important; /* 加粗，对应“黑体”的视觉感 */
+            letter-spacing: 1px; /* 稍微加点间距更好看 */
         }
     </style>
 </head>
@@ -135,7 +143,7 @@
                     <li><a href="home.html">主页</a></li>
                     <li><a href="about.html">关于我</a></li>
                     <li><a href="projects.html">个人日志</a></li>
-                    <li><a href="个人履历.pdf" target="_blank">个人履历</a></li>
+                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">个人履历</a></li>
                 </ul>
             </div>
         </nav>
@@ -150,7 +158,7 @@
     </div>
 
     <div class="button_container">
-        <a href="个人履历.pdf" target="_blank"><button type="button">个人履历</button></a>
+        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">个人履历</button></a>
     </div>
 
     <div class="social_container">
