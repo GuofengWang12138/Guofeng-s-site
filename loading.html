@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="7;url=https://pathumd.com/home.html" />
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="loading_animation.css">
     <title>Loading...</title>
@@ -28,6 +27,13 @@
         </div>
     </div>
 
+    <script src="loading_script.js"></script>   
+
+    <script>
+        // 4.5秒后，带着 'played=yes' 的通行证跳回主页
+        setTimeout(function() {
+            window.location.href = "index.html?played=yes"; 
+        }, 4500); 
+    </script>
 </body>
-<script src="loading_script.js"></script>   
 </html>
