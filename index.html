@@ -145,10 +145,10 @@
             </label>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="index.html?played=yes">主頁</a></li> 
-                    <li><a href="about.html">關於我</a></li>
-                    <li><a href="projects.html">個人日誌</a></li>
-                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">個人履歷</a></li>
+                    <li><a href="index.html?played=yes">主页</a></li> 
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="projects.html">个人日志</a></li>
+                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">个人履历</a></li>
                 </ul>
             </div>
         </nav>
@@ -159,11 +159,11 @@
     </div>
 
     <div class="tagline">
-        <h2>數據標註項目經理 | 自動駕駛 · 多模態大模型 · 內容質量</h2>
+        <h2>数据标注项目经理 | 自动驾驶 · 多模态大模型 · 内容质量</h2>
     </div>
 
     <div class="button_container">
-        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">個人履歷</button></a>
+        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">个人履历</button></a>
     </div>
 
     <div class="social_container">
@@ -187,7 +187,7 @@
     </div>
 
     <div id="my-fixed-footer">
-        <h2>請聯繫我：<a href="mailto:Rohanwang12138@gmail.com">Rohanwang12138@gmail.com</a></h2>
+        <h2>请联系我：<a href="mailto:Rohanwang12138@gmail.com">Rohanwang12138@gmail.com</a></h2>
     </div>
 
     <script>
@@ -206,7 +206,7 @@
 
         function switchBackground() {
             currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-            switchBtn.innerText = "加載中...";
+            switchBtn.innerText = "加载中...";
             switchBtn.style.background = '#fff';
             switchBtn.style.color = '#000';
             
@@ -220,12 +220,12 @@
             
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
-                    switchBtn.innerText = "更換背景";
+                    switchBtn.innerText = "更换背景";
                     switchBtn.style.background = 'transparent';
                     switchBtn.style.color = '#00e6e6';
                 }).catch(error => {
-                    console.log("切換失敗: ", error);
-                    switchBtn.innerText = "更換背景";
+                    console.log("切换失败: ", error);
+                    switchBtn.innerText = "更换背景";
                 });
             }
         }
