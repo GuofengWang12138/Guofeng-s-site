@@ -5,15 +5,10 @@
     
     <script>
         (function() {
-            // 获取当前网址的参数
             const urlParams = new URLSearchParams(window.location.search);
-            
-            // 如果网址里没有 'played' 这个标记，说明没看过动画
             if (!urlParams.has('played')) {
-                // 此时跳转去 loading.html
                 window.location.href = 'loading.html';
             }
-            // 如果有 'played'，这就行代码不执行，直接往下加载主页
         })();
     </script>
     
@@ -23,7 +18,7 @@
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     
     <style>
-        /* --- 视频背景 --- */
+        /* --- 視頻背景 --- */
         #bg-video {
             position: fixed;
             top: 0;
@@ -34,20 +29,21 @@
             z-index: -999;
             filter: brightness(0.5); 
             transition: opacity 0.5s ease;
+            background-color: #000; /* 防止視頻加載前的白閃 */
         }
 
         body {
-            background-color: #000; /* 视频加载前显示黑色 */
+            background-color: #000;
             margin: 0;
             overflow-x: hidden;
         }
 
-        /* --- 切换按钮 --- */
+        /* --- 切換按鈕 --- */
         #video-switch-btn {
             position: fixed;
             bottom: 40px;    
             right: 40px;     
-            z-index: 1000; 
+            z-index: 2000; 
             background-color: transparent;
             color: #00e6e6;
             border: 2px solid #00e6e6;
@@ -69,7 +65,24 @@
             box-shadow: 0 0 20px rgba(0, 230, 230, 0.8);
         }
 
-        /* --- 页脚 --- */
+        /* --- 手機端適配修正 --- */
+        @media (max-width: 768px) {
+            #video-switch-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+            .text_header h1 {
+                font-size: 28px !important; /* 防止手機標題太大重疊 */
+            }
+            #my-fixed-footer {
+                bottom: 20px !important;
+                font-size: 12px !important;
+            }
+        }
+
+        /* --- 頁腳 --- */
         #my-fixed-footer {
             position: fixed; 
             bottom: 52px;    
@@ -103,7 +116,7 @@
             text-decoration: underline;
         }
 
-        /* --- 导航栏 --- */
+        /* --- 導航欄 --- */
         .nav-wrapper ul li a {
             font-family: "Microsoft YaHei", "SimHei", sans-serif !important;
             font-weight: bold !important; 
@@ -119,7 +132,7 @@
     </video>
 
     <button id="video-switch-btn" onclick="switchBackground()">
-        更换背景
+        更換背景
     </button>
 
     <div class="container" id="home">
@@ -132,24 +145,25 @@
             </label>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="index.html?played=yes">主页</a></li> <li><a href="about.html">关于我</a></li>
-                    <li><a href="projects.html">个人日志</a></li>
-                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">个人履历</a></li>
+                    <li><a href="index.html?played=yes">主頁</a></li> 
+                    <li><a href="about.html">關於我</a></li>
+                    <li><a href="projects.html">個人日誌</a></li>
+                    <li><a href="Pathum_D_2021_resume.pdf" target="_blank">個人履歷</a></li>
                 </ul>
             </div>
         </nav>
     </div>
 
     <div class="text_header">
-        <h1 class="glitch" style="font-family: 'Segoe UI', sans-serif; font-weight: 600; letter-spacing: 3px; text-shadow: 0 0 5px rgba(0, 230, 230, 0.8); color: #ffffff;" data-text="你好，我是王国峰">你好，我是王国峰</h1>
+        <h1 class="glitch" style="font-family: 'Segoe UI', sans-serif; font-weight: 600; letter-spacing: 3px; text-shadow: 0 0 5px rgba(0, 230, 230, 0.8); color: #ffffff;" data-text="你好，我是王國峰">你好，我是王國峰</h1>
     </div>
 
     <div class="tagline">
-        <h2>数据标注项目经理 | 自动驾驶 · 多模态大模型 · 内容质量</h2>
+        <h2>數據標註項目經理 | 自動駕駛 · 多模態大模型 · 內容質量</h2>
     </div>
 
     <div class="button_container">
-        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">个人履历</button></a>
+        <a href="Pathum_D_2021_resume.pdf" target="_blank"><button type="button">個人履歷</button></a>
     </div>
 
     <div class="social_container">
@@ -173,7 +187,7 @@
     </div>
 
     <div id="my-fixed-footer">
-        <h2>请联系我：<a href="mailto:Rohanwang12138@gmail.com">Rohanwang12138@gmail.com</a></h2>
+        <h2>請聯繫我：<a href="mailto:Rohanwang12138@gmail.com">Rohanwang12138@gmail.com</a></h2>
     </div>
 
     <script>
@@ -192,20 +206,29 @@
 
         function switchBackground() {
             currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-            switchBtn.innerText = "加载中...";
+            switchBtn.innerText = "加載中...";
             switchBtn.style.background = '#fff';
             switchBtn.style.color = '#000';
             
-            setTimeout(() => {
-                videoElement.src = videos[currentVideoIndex];
-                videoElement.play();
-                switchBtn.innerText = "更换背景";
-                switchBtn.style.background = 'transparent';
-                switchBtn.style.color = '#00e6e6';
-            }, 100);
+            // 強制暫停並重新加載源，這對手機端切換非常重要
+            videoElement.pause();
+            videoElement.src = videos[currentVideoIndex];
+            videoElement.load(); // 顯式調用 load 確保更換生效
+            
+            // 使用 Promise 處理播放，防止手機端攔截自動播放
+            let playPromise = videoElement.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    switchBtn.innerText = "更換背景";
+                    switchBtn.style.background = 'transparent';
+                    switchBtn.style.color = '#00e6e6';
+                }).catch(error => {
+                    console.log("切換失敗: ", error);
+                    switchBtn.innerText = "更換背景";
+                });
+            }
         }
     </script>
-    
-    <script src="main.js"></script>
 </body>
 </html>
